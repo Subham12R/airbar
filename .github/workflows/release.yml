@@ -1,0 +1,30 @@
+name: Release
+
+on:
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check the tag matches VERSION
+        run: test "v$(cat VERSION)" = "${GITHUB_REF_NAME}"
+      - name: Test
+        run: swift test
+      - name: Build universal app
+        run: scripts/build-app.sh
+      - name: Checksum
+        run: cd dist && shasum -a 256 "AirBar-$(cat ../VERSION).zip" > "AirBar-$(cat ../VERSION).zip.sha256"
+      - name: Publish release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          V="$(cat VERSION)"
+          NOTES="$(awk "/^## \\[$V\\]/{f=1;next} /^## \\[/{f=0} f" CHANGELOG.md)"
+          gh release create "$GITHUB_REF_NAME" "dist/AirBar-$V.zip" "dist/AirBar-$V.zip.sha256" \
+            --title "AirBar $V" --notes "${NOTES:-See CHANGELOG.md}"

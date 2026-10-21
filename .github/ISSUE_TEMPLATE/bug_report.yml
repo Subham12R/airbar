@@ -1,0 +1,40 @@
+name: Bug report
+description: Something isn't working
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: Thanks for reporting! Please don't include passwords, tokens or other personal details.
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened?
+      description: What you did, what you expected, and what happened instead. Include any error message.
+    validations:
+      required: true
+  - type: input
+    id: airbar
+    attributes:
+      label: AirBar version
+      description: Settings → About
+      placeholder: "1.0.0"
+    validations:
+      required: true
+  - type: input
+    id: macos
+    attributes:
+      label: macOS version
+      placeholder: "macOS 15.4"
+    validations:
+      required: true
+  - type: input
+    id: model
+    attributes:
+      label: AC model (if known)
+      placeholder: "e.g. RAK-G312…"
+  - type: textarea
+    id: status
+    attributes:
+      label: airbar status --json (optional)
+      description: Helps with model-specific problems. Remove names or IDs if you prefer.
+      render: json
