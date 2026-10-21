@@ -2,6 +2,7 @@ import SwiftUI
 
 enum Theme {
     static let accent = Color(red: 0.2, green: 0.55, blue: 1)
+    static let warm = Color(red: 1, green: 0.62, blue: 0.2)
 
     /// One flat colour per mode.
     static func mode(_ mode: String?) -> Color {

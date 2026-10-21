@@ -38,7 +38,9 @@ cat > "$APP/Contents/Info.plist" <<PL
   <key>LSMinimumSystemVersion</key><string>14.0</string>
   <key>LSUIElement</key><true/>
   <key>LSApplicationCategoryType</key><string>public.app-category.utilities</string>
-  <key>NSHumanReadableCopyright</key><string>MIT License. Not affiliated with Hitachi.</string>
+  <key>NSHumanReadableCopyright</key><string>MIT License. Not affiliated with Hitachi, HomeMate or Tuya.</string>
+  <key>NSLocationUsageDescription</key><string>AirBar reads your Wi-Fi name and looks for devices waiting to be set up. macOS treats Wi-Fi names as location data.</string>
+  <key>NSLocationWhenInUseUsageDescription</key><string>AirBar reads your Wi-Fi name and looks for devices waiting to be set up. macOS treats Wi-Fi names as location data.</string>
 </dict></plist>
 PL
 
