@@ -15,7 +15,7 @@ All notable changes to AirBar are documented here. The format follows [Keep a Ch
 
 ### Changed
 - "Turn off all lights and switches" button in the panel footer.
-- The menu bar icon shows a bulb when only lights are set up.
+- The menu bar icon is now a house (filled while the AC or any light is on), and the app icon is the home icon.
 
 ## [1.0.0] - 2026-10-21
 

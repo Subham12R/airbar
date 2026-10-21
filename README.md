@@ -21,7 +21,7 @@
   <p><a href="https://github.com/Subham12R/airbar/releases/latest"><b>Download for macOS</b></a></p>
 </div>
 
-Click the icon in your menu bar and your home is right there: your **Hitachi air conditioner** (power, temperature, mode, fan speed and swing) and your **HomeMate / Tuya lights and switches** (on/off, brightness, white tone and colour), one click each. No phone, no apps to keep open.
+Click the house in your menu bar and your home is right there: your **Hitachi air conditioner** (power, temperature, mode, fan speed and swing) and your **HomeMate / Tuya lights and switches** (on/off, brightness, white tone and colour), one click each. No phone, no apps to keep open.
 
 - **Hitachi AC**, via the same **airCloud Go** cloud service as the official app. AirBar reads your model's rules, so it **only offers settings your unit supports** and never sends one it would reject. A small live model of the unit shows what it's doing.
 - **HomeMate / Tuya**, controlled **locally over your Wi-Fi**: commands go straight to the device in milliseconds, even with the internet down. A radar-style wizard pairs new devices without the HomeMate app.
@@ -156,7 +156,7 @@ flowchart LR
 | **<img src="https://api.iconify.design/lucide/shield-check.svg?color=%2371717a" width="20" height="20" align="absmiddle" /> No rejected commands** | Every command is fitted to the model's rules before it's sent |
 | **<img src="https://api.iconify.design/lucide/list-ordered.svg?color=%2371717a" width="20" height="20" align="absmiddle" /> Command queue** | Rapid taps merge into one command; units that are still busy are retried, never flooded |
 | **<img src="https://api.iconify.design/lucide/air-vent.svg?color=%2371717a" width="20" height="20" align="absmiddle" /> A live model** | The louver opens and sweeps, and airflow follows mode colour and fan speed |
-| **<img src="https://api.iconify.design/lucide/thermometer.svg?color=%2371717a" width="20" height="20" align="absmiddle" /> At a glance** | The menu bar icon fills in while a unit runs and can show the set temperature |
+| **<img src="https://api.iconify.design/lucide/house.svg?color=%2371717a" width="20" height="20" align="absmiddle" /> At a glance** | A house in the menu bar: filled while the AC or any light is on, with the AC's set temperature beside it |
 | **<img src="https://api.iconify.design/lucide/smartphone.svg?color=%2371717a" width="20" height="20" align="absmiddle" /> Phone or email sign-in** | Same login as airCloud Go; phone accounts use the app's own `mobileNumber` sign-in |
 | **<img src="https://api.iconify.design/lucide/key-round.svg?color=%2371717a" width="20" height="20" align="absmiddle" /> Keychain** | Password and session tokens live in the macOS Keychain, on this Mac only |
 | **<img src="https://api.iconify.design/lucide/layers.svg?color=%2371717a" width="20" height="20" align="absmiddle" /> Multiple units** | One card per indoor unit in your airCloud home |
@@ -215,7 +215,7 @@ The CLI shares the app's Keychain sign-in, config and command lock, so they neve
 
 1. Download `AirBar-<version>.zip` from the [latest release](https://github.com/Subham12R/airbar/releases/latest), unzip it, and drag **AirBar.app** to Applications.
 2. Open AirBar. The build isn't notarized yet, so macOS blocks the first launch: go to **System Settings › Privacy & Security** and click **Open Anyway** (or right-click AirBar › Open).
-3. Click the icon in the menu bar › **Sign in** for your AC (same phone number or email as airCloud Go), and/or **Add lights & switches**.
+3. Click the house in the menu bar › **Sign in** for your AC (same phone number or email as airCloud Go), and/or **Add lights & switches**.
 
 ### HomeMate / Tuya setup (once)
 
@@ -345,6 +345,7 @@ The app has a demo mode that needs no account. `--preview` opens a screen in a w
 | `--preview out.png` | Screenshot the panel to `out.png` and quit |
 | `--settings account\|devices\|general\|about\|pairing` | With `--preview`, screenshot a settings tab or the pairing wizard |
 | `--dark` | Dark appearance |
+| `--enable-login-item` · `--disable-login-item` | Turn **Open at login** on or off (same as Settings › General), for install scripts |
 
 ```bash
 dist/AirBar.app/Contents/MacOS/AirBar --demo --demo-mode FAN --preview /tmp/fan.png --dark

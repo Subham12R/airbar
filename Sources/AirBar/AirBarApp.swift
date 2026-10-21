@@ -1,10 +1,19 @@
 import AirCloudKit
 import AppKit
+import ServiceManagement
 import SwiftUI
 
 @main
 struct AirBarApp: App {
     @State private var store = Store()
+
+    init() {
+        // `open -a AirBar --args --enable-login-item` (or --disable-login-item), for install scripts.
+        // macOS only lets an app register its own login item, so this has to run inside AirBar.
+        let args = CommandLine.arguments
+        if args.contains("--enable-login-item") { try? SMAppService.mainApp.register() }
+        if args.contains("--disable-login-item") { try? SMAppService.mainApp.unregister() }
+    }
 
     var body: some Scene {
         MenuBarExtra {
@@ -25,10 +34,8 @@ struct MenuBarLabel: View {
     let store: Store
     var body: some View {
         HStack(spacing: 3) {
-            let lightsOnly = !store.signedIn && !store.devices.isEmpty
-            let anythingOn = store.running != nil || store.switchesOn > 0
-            Image(systemName: lightsOnly ? (anythingOn ? "lightbulb.fill" : "lightbulb")
-                                         : (anythingOn ? "air.conditioner.horizontal.fill" : "air.conditioner.horizontal"))
+            // Always the house: filled while anything (AC or a light) is on.
+            Image(systemName: store.running != nil || store.switchesOn > 0 ? "house.fill" : "house")
             if store.config.showTemperatureInMenuBar, let u = store.running, u.rules?.temperature != false, let t = u.iduTemperature {
                 Text(String(format: "%g°", t))
             }
