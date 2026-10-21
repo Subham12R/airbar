@@ -28,7 +28,21 @@ final class Store {
         config = cfg
         client = AirCloudClient(config: cfg)
         if demo {
-            units = [Self.demoUnit]
+            // --demo-mode DRY / --demo-off / --demo-fan LV4 vary the demo unit for screenshots.
+            var unit = Self.demoUnit
+            let args = CommandLine.arguments
+            if let i = args.firstIndex(of: "--demo-mode"), i + 1 < args.count {
+                unit.mode = args[i + 1].uppercased()
+                if let r = unit.capabilities?.byMode[unit.mode] {
+                    if !r.fans.contains(unit.fanSpeed) { unit.fanSpeed = r.defaultFan }
+                    if r.temperature, let lo = r.minTemperature, let hi = r.maxTemperature {
+                        unit.iduTemperature = min(hi, max(lo, unit.iduTemperature ?? lo))
+                    }
+                }
+            }
+            if let i = args.firstIndex(of: "--demo-fan"), i + 1 < args.count { unit.fanSpeed = args[i + 1].uppercased() }
+            if args.contains("--demo-off") { unit.power = "OFF" }
+            units = [unit]
             signedIn = true
             account = "demo@example.com"
             loaded = true
