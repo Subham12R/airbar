@@ -61,9 +61,7 @@ struct Panel: View {
 
     private var header: some View {
         HStack(spacing: 10) {
-            Image(systemName: "air.conditioner.horizontal.fill").font(.system(size: 14, weight: .semibold)).foregroundStyle(.white)
-                .frame(width: 32, height: 32)
-                .background(RoundedRectangle(cornerRadius: 9, style: .continuous).fill(Theme.accent))
+            AppIconView(size: 32)
             VStack(alignment: .leading, spacing: 1) {
                 Text("AirBar").font(.system(size: 15, weight: .bold))
                 Text(summary).font(.system(size: 11)).foregroundStyle(.secondary)

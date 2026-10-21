@@ -19,8 +19,10 @@ rm -rf "$APP" && mkdir -p "$APP/Contents/MacOS" "$APP/Contents/Resources"
 cp "$BIN/AirBarApp" "$APP/Contents/MacOS/AirBar"
 cp "$BIN/airbar" "$DIST/airbar"
 
-ICONSET="$(mktemp -d)/AppIcon.iconset"
-swift scripts/make-icon.swift "$ICONSET"
+TMP="$(mktemp -d)"
+ICONSET="$TMP/AppIcon.iconset"
+cat scripts/icon-art.swift scripts/make-icon.swift > "$TMP/make-icon.swift"
+swift "$TMP/make-icon.swift" "$ICONSET"
 iconutil -c icns "$ICONSET" -o "$APP/Contents/Resources/AppIcon.icns"
 
 cat > "$APP/Contents/Info.plist" <<PL

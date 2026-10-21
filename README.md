@@ -1,12 +1,12 @@
 <div align="center">
-  <img src="docs/brand/banner.png" alt="AirBar: your Hitachi AC and HomeMate lights, from the Mac menu bar" width="100%" />
+  <img src="docs/brand/banner.png" alt="AirBar: your home, from the Mac menu bar. Hitachi AC and HomeMate / Tuya lights" width="100%" />
 
   <br />
   <br />
 
   <h1><img src="docs/brand/airbar-logo.png" height="44" align="absmiddle" /> AirBar</h1>
 
-  <p><strong>Your Hitachi AC and HomeMate lights, from the Mac menu bar.</strong></p>
+  <p><strong>Your home, from the Mac menu bar.</strong><br />Hitachi air conditioners and HomeMate / Tuya lights and switches, in one native app.</p>
 
   <p>
     <img src="https://img.shields.io/badge/macOS-14%2B-18181b?style=flat-square&logo=apple&logoColor=white" alt="macOS 14+" />
@@ -325,7 +325,7 @@ More in [SUPPORT.md](SUPPORT.md).
 swift build                       # everything
 swift test                        # 38 tests, no network (3 live-device tests skip themselves)
 scripts/build-app.sh --native     # app bundle + zip in dist/
-swift scripts/brand.swift docs/images/panel-dark.png   # regenerate docs/brand/
+scripts/brand.sh                  # regenerate docs/brand/ (icon, logo, banner)
 ```
 
 <details>
@@ -387,7 +387,7 @@ Sources/
 ├── AirBar/             menu bar app: panel, AC card, lights, settings, devices, pairing wizard
 └── airbar-cli/         the airbar command-line tool
 Tests/                  unit tests (no network) and opt-in live device tests
-scripts/                build-app.sh, make-icon.swift, brand.swift
+scripts/                build-app.sh, brand.sh, icon-art.swift (shared icon), make-icon.swift, brand.swift
 docs/                   API.md, brand/, images/
 ```
 

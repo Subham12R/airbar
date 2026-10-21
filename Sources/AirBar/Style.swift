@@ -144,3 +144,18 @@ struct StatusLine: View {
         }
     }
 }
+
+// MARK: - App icon (same artwork as scripts/icon-art.swift)
+
+/// The HomeBar house: a white house on an orange rounded square.
+struct AppIconView: View {
+    var size: CGFloat = 32
+    var body: some View {
+        Image(systemName: "house.fill")
+            .font(.system(size: size * 0.46, weight: .semibold))
+            .foregroundStyle(.white)
+            .frame(width: size, height: size)
+            .background(RoundedRectangle(cornerRadius: size * 0.28, style: .continuous).fill(Theme.warm))
+            .accessibilityHidden(true)
+    }
+}
