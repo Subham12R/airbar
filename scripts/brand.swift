@@ -47,11 +47,11 @@ try canvas(2400, 800) {
     NSAttributedString(string: "AirBar", attributes: title).draw(at: NSPoint(x: 345, y: 460))
     let tag: [NSAttributedString.Key: Any] = [.font: NSFont.systemFont(ofSize: 52, weight: .regular),
                                               .foregroundColor: NSColor(white: 0.72, alpha: 1)]
-    NSAttributedString(string: "Your Hitachi air conditioner,", attributes: tag).draw(at: NSPoint(x: 165, y: 330))
-    NSAttributedString(string: "from the Mac menu bar.", attributes: tag).draw(at: NSPoint(x: 165, y: 262))
+    NSAttributedString(string: "Your Hitachi AC and HomeMate", attributes: tag).draw(at: NSPoint(x: 165, y: 330))
+    NSAttributedString(string: "lights, from the Mac menu bar.", attributes: tag).draw(at: NSPoint(x: 165, y: 262))
     let small: [NSAttributedString.Key: Any] = [.font: NSFont.systemFont(ofSize: 34, weight: .medium),
                                                 .foregroundColor: NSColor(white: 0.5, alpha: 1)]
-    NSAttributedString(string: "Native SwiftUI · airCloud Go · Open source", attributes: small).draw(at: NSPoint(x: 168, y: 160))
+    NSAttributedString(string: "Native SwiftUI · airCloud Go · Tuya local · Open source", attributes: small).draw(at: NSPoint(x: 168, y: 160))
     if let shot = screenshot {
         // Show the top of the panel (header, unit and temperature); the banner's bottom edge crops the rest.
         let w: CGFloat = 820

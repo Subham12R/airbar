@@ -3,26 +3,34 @@ import AppKit
 import SwiftUI
 
 struct SettingsView: View {
-    enum Tab: String, CaseIterable { case account = "Account", general = "General", about = "About" }
-    @State var tab: Tab = .account
+    enum Tab: String, CaseIterable { case account = "Account", devices = "Devices", general = "General", about = "About" }
+    @AppStorage("settingsTab") private var stored = Tab.account.rawValue
+    var forced: Tab? = nil
+
+    init(tab: Tab? = nil) { forced = tab }
+
+    private var tab: Binding<Tab> {
+        Binding(get: { forced ?? Tab(rawValue: stored) ?? .account }, set: { stored = $0.rawValue })
+    }
 
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
-            Picker("", selection: $tab) {
+            Picker("", selection: tab) {
                 ForEach(Tab.allCases, id: \.self) { Text($0.rawValue).tag($0) }
             }
             .pickerStyle(.segmented).labelsHidden()
-            .frame(maxWidth: 320)
+            .frame(maxWidth: 380)
             .frame(maxWidth: .infinity)
-            switch tab {
+            switch tab.wrappedValue {
             case .account: AccountPane()
+            case .devices: DevicesPane()
             case .general: GeneralPane()
             case .about: AboutPane()
             }
             Spacer(minLength: 0)
         }
         .padding(22)
-        .frame(width: 460, height: 440)
+        .frame(width: 560, height: 620)
     }
 }
 
@@ -159,14 +167,14 @@ struct AboutPane: View {
                     .background(RoundedRectangle(cornerRadius: 11, style: .continuous).fill(Theme.accent))
                 VStack(alignment: .leading, spacing: 2) {
                     Text("AirBar \(version)").font(.system(size: 15, weight: .semibold))
-                    Text("Your Hitachi air conditioner, from the menu bar.").font(.system(size: 12)).foregroundStyle(.secondary)
+                    Text("Your Hitachi AC and HomeMate lights, from the menu bar.").font(.system(size: 12)).foregroundStyle(.secondary)
                 }
             }
             HStack {
                 Button("GitHub") { open("https://github.com/Subham12R/airbar") }.buttonStyle(SecondaryButtonStyle())
                 Button("Report an issue") { open("https://github.com/Subham12R/airbar/issues/new/choose") }.buttonStyle(SecondaryButtonStyle())
             }
-            Text("AirBar is an independent open-source project. It is not affiliated with, endorsed by, or supported by Hitachi, Johnson Controls-Hitachi Air Conditioning, or airCloud. Product names are trademarks of their owners.")
+            Text("AirBar is an independent open-source project. It is not affiliated with, endorsed by, or supported by Hitachi, Johnson Controls-Hitachi Air Conditioning, airCloud, HomeMate or Tuya. Product names are trademarks of their owners.")
                 .font(.system(size: 10.5)).foregroundStyle(.secondary).fixedSize(horizontal: false, vertical: true)
         }
         .padding(16).card(16)

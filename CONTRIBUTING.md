@@ -35,10 +35,23 @@ dist/AirBar.app/Contents/MacOS/AirBar --demo --preview /tmp/panel.png --dark
 | Path | What's there |
 |---|---|
 | `Sources/AirCloudKit` | API client (`AirCloudClient`), model rules (`Capabilities`), command fitting, STOMP parsing, Keychain, config |
-| `Sources/AirBar` | SwiftUI menu bar app: panel, AC card, illustration, settings |
+| `Sources/TuyaKit` | HomeMate / Tuya: LAN protocol (3.3/3.4/3.5), discovery, light logic, Tuya Cloud, SmartConfig pairing |
+| `Sources/AirBar` | SwiftUI menu bar app: panel, AC card, lights, settings, devices, pairing wizard |
 | `Sources/airbar-cli` | `airbar` command-line tool |
 | `Tests/AirCloudKitTests` | Unit tests (no network) |
 | `docs/API.md` | What we know about the airCloud API |
+| `docs/TUYA.md` | How the Tuya side works |
+
+## Testing against a real Tuya device
+
+`LiveDeviceTests` talk to a real device when you give it one; otherwise they skip:
+
+```bash
+TUYA_TEST_ID=… TUYA_TEST_IP=10.0.0.20 TUYA_TEST_KEY=… TUYA_TEST_VERSION=3.5 swift test --filter LiveDeviceTests
+TUYA_TEST_WRITE=1 …   # also re-sends the device's current on/off value (no visible change)
+```
+
+Protocol changes must keep the byte-for-byte tests in `Tests/TuyaKitTests` passing. Their vectors come from tinytuya and tuya-convert; regenerate them rather than editing by hand.
 
 ## Guidelines
 
