@@ -162,12 +162,10 @@ struct AboutPane: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
             HStack(spacing: 12) {
-                Image(systemName: "air.conditioner.horizontal.fill").font(.system(size: 20, weight: .semibold)).foregroundStyle(.white)
-                    .frame(width: 44, height: 44)
-                    .background(RoundedRectangle(cornerRadius: 11, style: .continuous).fill(Theme.accent))
+                AppIconView(size: 44)
                 VStack(alignment: .leading, spacing: 2) {
                     Text("AirBar \(version)").font(.system(size: 15, weight: .semibold))
-                    Text("Your Hitachi AC and HomeMate lights, from the menu bar.").font(.system(size: 12)).foregroundStyle(.secondary)
+                    Text("Your home, from the menu bar: Hitachi AC and HomeMate lights.").font(.system(size: 12)).foregroundStyle(.secondary)
                 }
             }
             HStack {
